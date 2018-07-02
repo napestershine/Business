@@ -28,7 +28,7 @@ class MaterialTest extends TestCase
         $this->get('/materials')
             // we should see materials
             ->assertStatus(200)
-            ->assertSee($this->material->title);
+            ->assertSee($this->material->name);
     }
 
     /**
@@ -42,7 +42,7 @@ class MaterialTest extends TestCase
         $this->get('/materials/' . $this->material->id)
             // we should see the single material
             ->assertStatus(200)
-            ->assertSee($this->material->title);
+            ->assertSee($this->material->name);
     }
 
     /**
@@ -55,7 +55,29 @@ class MaterialTest extends TestCase
         $this->post('/materials', $material->toArray());
 
         $this->get($material->path())
-            ->assertSee($material->title)
-            ->assertSee($material->body);
+            ->assertSee($material->name)
+            ->assertSee($material->description);
+    }
+
+    /**
+     * @test
+     */
+    public function can_edit_material(): void {
+
+        // given we have a material, set up function
+
+        // edit content
+        $this->material->name = 'My Name';
+
+        // see changed content
+
+
+        $material = create(Material::class);
+
+        $this->post('/materials', $material->toArray());
+
+        $this->get($material->path())
+            ->assertSee($material->name)
+            ->assertSee($material->description);
     }
 }
