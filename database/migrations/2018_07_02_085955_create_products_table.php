@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('customer');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->float('price')->nullable();
             $table->softDeletes();
@@ -23,9 +23,9 @@ class CreateProductsTable extends Migration
         });
 
         Schema::create('material_products', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('material_id');
             $table->integer('product_id');
-            $table->primary(['material_id', 'product_id']);
         });
     }
 

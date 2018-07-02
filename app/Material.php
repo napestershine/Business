@@ -31,4 +31,13 @@ class Material extends Model
     {
         return '/materials/' . $this->id;
     }
+
+    /**
+     * Get all the products of this Material.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function products() {
+        return $this->belongsToMany(Product::class, 'material_products');
+    }
 }

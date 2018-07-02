@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('material_id')->unsigned();
             $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
-            $table->integer('quantity');
             $table->softDeletes();
             $table->timestamps();
         });
