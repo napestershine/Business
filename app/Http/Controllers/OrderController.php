@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Material;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        foreach ($orders as $order) {
+            $order->material = Material::find($order->material_id);
+        }
+        return view('orders.index', compact('orders'));
     }
 
     /**
