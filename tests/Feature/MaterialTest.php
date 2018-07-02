@@ -57,5 +57,5 @@ class MaterialTest extends TestCase
         $this->get($material->path())
             ->assertSee($material->title)
             ->assertSee($material->body);
-    }*/
+    }
 }
